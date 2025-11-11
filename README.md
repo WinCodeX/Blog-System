@@ -154,7 +154,7 @@ The test suite validates:
 
 Tests use beforeEach hooks to ensure database isolation between test cases, preventing data pollution and ensuring reliable test execution.
 
-### Technology Choices
+### Technology Used
 
 **SQLite**: Selected for development simplicity and zero configuration. Production systems would typically use PostgreSQL or MySQL.
 
