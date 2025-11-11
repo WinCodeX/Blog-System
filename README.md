@@ -23,13 +23,29 @@ npm run prisma:generate
 ```bash
 npm run prisma:migrate
 ```
+When prompted for migration name, enter: 'init' or any of your choosing.
+
+
+## Running the Application
+### Demo Mode (Interactive Demonstration)
+
+```bash
+npm run demo
+```
+
+This will:
+- Create two users (Lisa and Glen)
+- Create two posts about programming
+- Add four comments to the posts
+- Display all posts with their comments
+
 
 ## Running the Tests
 Execute the test
 ```bash
 npm test
 ```
-Expected output: All 16 tests should pass, including a complete blog scenario demonstration.
+Expected output: All 16 tests should pass, validating CRUD  operations and relational queries 
 
 ### What the Tests Demonstrate
 
@@ -71,6 +87,7 @@ blog-system/
 ├── prisma/
 │   └── schema.prisma          # Database schema definition
 ├── src/
+│   ├── index.ts               # Demo application
 │   ├── blog.service.ts        # Core business logic
 │   ├── blog.service.test.ts   # Test suite
 │   └── prisma.ts              # Prisma client instance
