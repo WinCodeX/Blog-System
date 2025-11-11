@@ -24,12 +24,40 @@ npm run prisma:generate
 npm run prisma:migrate
 ```
 
-## Running Tests
-
-Run all tests:
+## Running the Tests
+Execute the test
 ```bash
 npm test
 ```
+Expected output: All 16 tests should pass, including a complete blog scenario demonstration.
+
+### What the Tests Demonstrate
+
+The test suite includes a comprehensive scenario with:
+
+**Two Users:**
+- Lisa (lisa@example.com)
+- Glen (glen@example.com)
+
+**Two Posts:**
+1. "What do you love about programming?" by Lisa
+2. "Best programming practices" by Glen
+
+**Four Comments:**
+- Post 1: 2 comments (one from Glen, one from Lisa)
+- Post 2: 2 comments (one from Lisa, one from Glen)
+
+The tests verify:
+- User creation and retrieval with posts and comments
+- Post creation with author relationships
+- Comment creation linking users and posts
+- Relational queries that fetch nested data
+- Cascade deletion behavior
+- Complete blog functionality integration
+
+
+
+
 
 Run tests in watch mode:
 ```bash
