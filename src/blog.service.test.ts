@@ -386,6 +386,10 @@ describe('BlogService', () => {
 
   describe('Complete Blog Scenario', () => {
     it('should demonstrate full blog functionality with two posts and comments', async () => {
+      console.log('\n========================================');
+      console.log('BLOG SYSTEM DEMONSTRATION');
+      console.log('========================================\n');
+
       const lisa = await blogService.createUser({
         email: 'lisa@example.com',
         name: 'Lisa',
@@ -395,6 +399,8 @@ describe('BlogService', () => {
         email: 'glen@example.com',
         name: 'Glen',
       });
+
+      console.log('✓ Created 2 users: Lisa and Glen\n');
 
       const post1 = await blogService.createPost({
         title: 'What do you love about programming?',
@@ -409,6 +415,8 @@ describe('BlogService', () => {
         authorId: glen.id,
         published: true,
       });
+
+      console.log('✓ Created 2 posts\n');
 
       await blogService.createComment({
         content: 'I love the problem-solving aspect. Every bug is a puzzle waiting to be solved.',
@@ -434,16 +442,72 @@ describe('BlogService', () => {
         authorId: glen.id,
       });
 
+      console.log('✓ Created 4 comments\n');
+
       const fetchedPost1 = await blogService.getPostById(post1.id);
       const fetchedPost2 = await blogService.getPostById(post2.id);
+
+      console.log('========================================');
+      console.log('POST 1: What do you love about programming?');
+      console.log('========================================');
+      console.log(`Author: ${fetchedPost1?.author.name} (${fetchedPost1?.author.email})`);
+      console.log(`Content: ${fetchedPost1?.content}`);
+      console.log(`Published: ${fetchedPost1?.published}`);
+      console.log(`\nComments (${fetchedPost1?.comments.length}):`);
+      fetchedPost1?.comments.forEach((comment, index) => {
+        console.log(`\n  ${index + 1}. ${comment.author.name} says:`);
+        console.log(`     "${comment.content}"`);
+      });
+      console.log('\n');
+
+      console.log('========================================');
+      console.log('POST 2: Best programming practices');
+      console.log('========================================');
+      console.log(`Author: ${fetchedPost2?.author.name} (${fetchedPost2?.author.email})`);
+      console.log(`Content: ${fetchedPost2?.content}`);
+      console.log(`Published: ${fetchedPost2?.published}`);
+      console.log(`\nComments (${fetchedPost2?.comments.length}):`);
+      fetchedPost2?.comments.forEach((comment, index) => {
+        console.log(`\n  ${index + 1}. ${comment.author.name} says:`);
+        console.log(`     "${comment.content}"`);
+      });
+      console.log('\n');
+
+      const lisaUser = await blogService.getUserById(lisa.id);
+      const glenUser = await blogService.getUserById(glen.id);
+
+      console.log('========================================');
+      console.log('USER PROFILES WITH ACTIVITY');
+      console.log('========================================\n');
+
+      console.log(`LISA (${lisaUser?.email})`);
+      console.log(`  Posts created: ${lisaUser?.posts.length}`);
+      lisaUser?.posts.forEach((post) => {
+        console.log(`    - "${post.title}"`);
+      });
+      console.log(`  Comments made: ${lisaUser?.comments.length}`);
+      lisaUser?.comments.forEach((comment) => {
+        console.log(`    - "${comment.content.substring(0, 50)}..."`);
+      });
+
+      console.log(`\nGLEN (${glenUser?.email})`);
+      console.log(`  Posts created: ${glenUser?.posts.length}`);
+      glenUser?.posts.forEach((post) => {
+        console.log(`    - "${post.title}"`);
+      });
+      console.log(`  Comments made: ${glenUser?.comments.length}`);
+      glenUser?.comments.forEach((comment) => {
+        console.log(`    - "${comment.content.substring(0, 50)}..."`);
+      });
+
+      console.log('\n========================================');
+      console.log('VERIFICATION COMPLETE');
+      console.log('========================================\n');
 
       expect(fetchedPost1?.comments).toHaveLength(2);
       expect(fetchedPost2?.comments).toHaveLength(2);
       expect(fetchedPost1?.author.name).toBe('Lisa');
       expect(fetchedPost2?.author.name).toBe('Glen');
-
-      const lisaUser = await blogService.getUserById(lisa.id);
-      const glenUser = await blogService.getUserById(glen.id);
 
       expect(lisaUser?.posts).toHaveLength(1);
       expect(glenUser?.posts).toHaveLength(1);
