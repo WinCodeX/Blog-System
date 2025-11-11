@@ -5,6 +5,7 @@ A TypeScript-based blogging system demonstrating Prisma ORM capabilities with re
 ## Prerequisites
 
 - npm 
+- Node.js
 
 ## Installation
 
