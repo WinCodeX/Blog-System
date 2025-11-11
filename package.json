@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "demo": "ts-node src/index.ts",
     "test": "jest",
     "test:watch": "jest --watch",
     "prisma:generate": "prisma generate",
